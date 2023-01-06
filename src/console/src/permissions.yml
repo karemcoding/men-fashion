@@ -1,0 +1,21 @@
+user:
+  description: User's Permission
+  child:
+    index: List User & Show Menu Item
+    upsert: Create/Update User
+    delete: Delete User
+role:
+  description: Role's Permission
+  child:
+    index: List Role & Show Menu Item
+    upsert: Create/Update User
+    delete: Delete User
+    access: Access Control
+setting:
+  description: Setting's Permission
+  child:
+    list: List Setting & Show Menu Item
+    general: General Setting
+    email: Email Setting
+    paypal: PayPal Setting
+    stripe: Stripe Setting

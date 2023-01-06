@@ -1,0 +1,4 @@
+name: yii2-luanvan
+recipe: lamp
+config:
+  webroot: .

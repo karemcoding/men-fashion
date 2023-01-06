@@ -1,0 +1,31 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: seeking
+    entities:
+    - product: áo ba lỗ
+  - slot_was_set:
+    - product: áo ba lỗ
+  - action: utter_seeking
+  - action: utter_did_that_help
+  - intent: thanks
+  - action: utter_thanks
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: discount path
+  steps:
+  - intent: discount
+  - action: utter_discount
+
+- story: infomation path
+  steps:
+  - intent: infomation
+  - action: utter_infomation
+  - intent: time
+  - action: utter_time

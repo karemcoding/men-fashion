@@ -1,0 +1,16 @@
+Options -Indexes
+<Files ~ "\.(conf|log|data|bin|bat|gitignore|json|lock)$|^init$">
+    Order allow,deny
+    Deny from all
+</Files>
+RedirectMatch 404 /\..*$
+
+# Yii 2 default
+RewriteEngine on
+# If a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Otherwise forward it to index.php
+RewriteRule . index.php
+
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]

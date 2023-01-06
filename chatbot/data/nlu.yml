@@ -1,0 +1,128 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hello
+    - hi
+    - shop ơi
+    - ê
+    - chào shop
+    - chào
+    - bạn ơi
+    - chị ơi
+    - anh ơi
+    - xin chào
+    - alo
+
+- intent: thanks
+  examples: |
+    - cảm ơn
+    - thank you
+    - thanks
+    - ty
+    - cảm ơn nhiều
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - tạm biệt
+    - pp
+
+- intent: seeking
+  examples: |
+    - tôi đang tìm [áo thun](product)
+    - tôi tìm [áo polo](product)
+    - tôi muốn mua [quần jeans](product)
+    - [quần short](product)
+    - gợi ý cho tôi [áo sơ mi](product)
+  
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - đúng rồi
+    - phải
+    - ừ
+    - chính xác
+    - ừa
+    - ừm
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - hok
+    - hok phải
+    - không
+    - không phải 
+    - không đúng
+    - sai
+    - sai rồi
+
+- intent: mood_great
+  examples: |
+    - rất tuyệt
+    - rất đẹp
+    - hài lòng
+    - đẹp
+    - tuyệt vời
+
+- intent: mood_unhappy
+  examples: |
+    - tôi không hài lòng
+    - rất tệ
+
+
+- intent: bot_challenge
+  examples: |
+    - bạn là bot à
+    - bạn là ai
+    - ai vậy
+    - ai đó
+    - m là ai
+    - m là bot hay người
+    - chủ shop có đó không
+
+
+- intent: time
+  examples: |
+    - mấy giờ mở cửa 
+    - giờ mở cửa
+    - khi nào bán hàng
+    - khi nào mở cửa
+    - chừng nào shop mở cửa
+    - khi nào bắt đầu bán
+    - khi nào đóng cửa
+    - shop đã đóng cửa chưa
+    - mấy giờ nghỉ
+    - nghỉ chưa
+    - mở cửa chưa
+    - bán chưa
+
+
+- intent: discount
+  examples: |
+    - giảm giá
+    - sản phẩm nào đang giảm giá
+    - khuyến mãi
+    - cho tôi biết thông tin khuyến mãi
+    - các sản phẩm nào đang được giảm giá 
+    - món hàng nào đang sales
+    - có sales ko
+    - cái nào đang sale
+    - sản phẩm nào đang sale 
+
+- intent: infomation
+  examples: |
+    - tôi muốn biết thông tin về shop
+    - thông tin
+
+- intent: out_of_scope
+  examples: |
+    - ádasdawduawdwaydawjd
+    - kjadwkwadjkbawdjkbwadj
+    - Thương cho tấm thân cơ hàn, ngậm ngùi lặng nhìn con đò sang ngang Mộng vàng nay hoá tro tàn khi trên xe hoa ai đón đưa nàng
+
+#rasa run -m models --enable-api --cors "*" --debug

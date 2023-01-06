@@ -1,0 +1,43 @@
+div.required > label:first-child:after {
+    color: #e63757;
+    content: '*';
+}
+
+.disabled__ipt {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+.custom-control-input ~ .custom-control-label:before, .custom-control-label:after {
+    cursor: pointer;
+}
+
+.input-group:not(.has-validation) > .form-control:not(:last-child), .input-group:not(.has-validation) > .custom-select:not(:last-child), .input-group:not(.has-validation) > .custom-file:not(:last-child) .custom-file-label::after {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+}
+
+.contact__table td {
+    padding: 3px;
+}
+
+input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+}
+
+input[type=checkbox]:hover {
+    cursor: pointer;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}

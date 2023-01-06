@@ -1,0 +1,4 @@
+coupon:
+  name: Voucher
+  description: Free one selected fee
+  action: free-one-fee

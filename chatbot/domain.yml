@@ -1,0 +1,77 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - thanks
+  - seeking
+  - time
+  - discount
+  - infomation
+
+entities:
+  - product
+slots:
+  product:
+    type: text
+    influence_conversation: true 
+    mappings:
+    - type: from_entity
+      entity: product
+
+responses:
+#1
+  utter_greet:
+  - text: "Xin chào! Tôi là Kà Rem, chatbot của website, bạn cần gì?"
+#2
+  utter_thanks:
+  - text: "Rất hân hạnh"
+#3
+  utter_goodbye:
+  - text: "Bye"
+#4
+  utter_seeking:
+  - text: "Tôi có 1 vài gợi ý {product} cho bạn:"
+    image: "http://localhost/yiicore/api/product?search={product}&limit=3"
+
+  utter_deny:
+  - text: "Bạn có thể miêu tả lại mong muốn của bạn được không?"
+
+  utter_mood_great:
+  - text: "^.^"
+  utter_happy:
+  - text: "Tuyệt!"
+#8
+  utter_mood_unhappy:
+  - text: "Thành thật xin lỗi"
+
+#9
+  utter_iamabot:
+  - text: "Tôi là Kà Rem, chatbot của website."
+#10
+  utter_time:
+  - text: "Cửa hàng sẽ mở cửa vào 8h và đóng cửa vào 22h tất cả các ngày trong tuần"
+#11
+  utter_discount:
+  - text: "Một số sản phẩm đang giảm giá:"
+    image: "http://localhost/yiicore/api/product?filter=2&limit=3"
+#12
+  utter_infomation:
+  - text: "Chúng tôi là MEN-FASHION. Cửa hàng thời trang nam mà bạn đang tìm kiếm"
+  utter_did_that_help:
+  - text: "Có phải thứ bạn đang tìm không?"
+
+  utter_out_of_scope:
+  - text: Tôi không hiểu ý bạn. Hãy diễn tả lại bằng 1 cách khác
+
+
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

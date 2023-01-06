@@ -1,0 +1,22 @@
+new_member:
+  name: New Member
+  description: New Member Notification
+  params:
+    - user:name
+    - user:email
+reset_password:
+  name: Reset Password
+  description: Reset Password Notification
+  params:
+    - user:name
+reset_password_get_code:
+  name: Get Validate Code
+  description: Get Validate Reset Password Code
+  params:
+    - user:name
+    - code
+change_password:
+  name: Change Password
+  description: Change Password
+  params:
+    - user:name
