@@ -57,6 +57,8 @@ class ProductQuery extends ActiveQuery
         return $this->alias('this')->select([
             'this.id',
             'this.name',
+            'this.enname',
+            'this.jpname',
             'this.thumbnail',
             'this.price',
             'this.category_id',

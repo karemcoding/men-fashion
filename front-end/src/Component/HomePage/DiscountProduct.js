@@ -40,7 +40,7 @@ export default function DiscountProduct() {
 
                     {productList.map((item, index) => (
                         <Grid item xs={2} sm={4} md={4}>
-                            <ProductCard key={index} name={item.name} price={item.price} description={item.description} image={parseImagePath(item.thumbnail)} id={item.id} score={item.score} hot={item.hot} discount={item.productDiscounts}></ProductCard>
+                            <ProductCard key={index} name={i18n.language=='en'? item.enname:i18n.language=='jp'? item.jpname:item.name} price={item.price} description={item.description} image={parseImagePath(item.thumbnail)} id={item.id} score={item.score} hot={item.hot} discount={item.productDiscounts}></ProductCard>
                         </Grid>
                     ))}
 

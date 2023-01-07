@@ -4,8 +4,10 @@ import { Container, Grid, Box, Pagination, Select, Checkbox, MenuItem, InputLabe
 import ProductCard from './ProductCard';
 import { useParams } from 'react-router';
 
+import { useTranslation } from 'react-i18next';
 
 function ProductPage() {
+    const { t, i18n } = useTranslation();
     const [filter, setFilter] = React.useState(0);
     const query = new URLSearchParams(window.location.search);
     const category = query.get('category');
@@ -142,7 +144,7 @@ function ProductPage() {
 
                 {product.map((item, index) => (
                     <Grid item xs={3}>
-                        <ProductCard key={index} name={item.name} price={item.price} description={item.description} image={parseImagePath(item.thumbnail)} id={item.id} score={item.score} hot={item.hot} discount={item.productDiscounts}></ProductCard>
+                        <ProductCard key={index} name={i18n.language=='en'? item.enname:item.name||i18n.language=='jp'? item.jpname:item.name} price={item.price} description={item.description} image={parseImagePath(item.thumbnail)} id={item.id} score={item.score} hot={item.hot} discount={item.productDiscounts}></ProductCard>
                     </Grid>
                 ))}
 

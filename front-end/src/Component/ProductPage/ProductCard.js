@@ -11,15 +11,13 @@ export default function ProductCard(props) {
   return (
     <Badge badgeContent={'Nổi bật'} color="error" invisible={(props.hot != 10)}>
       <Card
-
-
       >
         <CardActionArea
         >
           <CardMedia
             onClick={() => { window.location.href = '/product/' + props.id }}
             component="img"
-            height="200"
+            height="250"
             image={`${axios.defaults.baseURL}/${props.image}`}
             alt="green iguana"
 
@@ -27,6 +25,7 @@ export default function ProductCard(props) {
         </CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h6" component="div" sx={{
+            width: '300',
             display: '-webkit-box',
             overflow: 'hidden',
             WebkitBoxOrient: 'vertical',
