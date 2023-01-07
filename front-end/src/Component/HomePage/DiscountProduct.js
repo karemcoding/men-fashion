@@ -3,7 +3,10 @@ import ProductCard from '../ProductPage/ProductCard';
 import axios from 'axios';
 import { Container, Link, Grid } from '@mui/material'
 
+import { useTranslation } from 'react-i18next';
+
 export default function DiscountProduct() {
+    const { t, i18n } = useTranslation();
     const [productList, setProductList] = React.useState(['1']);
     async function loadTable() {
         await axios.get(`/api/product?limit=5&filter=2`).then(product => {
@@ -29,9 +32,9 @@ export default function DiscountProduct() {
 
         <Grid sx={{ my: 6 }}>
         <Grid container justifyContent="flex-end">
-            <h2>Sản phẩm đang giảm giá</h2>
+            <h2>{t('sales')}</h2>
             <Grid item  xs></Grid>
-            <Link href="product?fil=2"><h3>Xem thêm</h3></Link>
+            <Link href="product?fil=2"><h3>{t('more')}</h3></Link>
             </Grid>
                 <Grid container spacing={2}>
 

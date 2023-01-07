@@ -20,6 +20,8 @@ import PopupState, { bindHover, bindMenu } from 'material-ui-popup-state';
 import HoverMenu from 'material-ui-popup-state/HoverMenu'
 import Cart from './Cart'
 
+import { useTranslation } from 'react-i18next';
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -61,6 +63,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header(props) {
+  const { t, i18n } = useTranslation();
   const [category, setCategory] = React.useState(['1']);
   const [profile, setProfile] = React.useState(['']);
   // const [cart, setCart] = React.useState(['']);
@@ -134,66 +137,66 @@ const handleSearch = (e) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >{(localStorage.token)
-      ? [<MenuItem key="thongtintaikhoan" onClick={() => { window.location.href = "/profile" }}>Thông tin tài khoản</MenuItem>,
-      <MenuItem key="dangxuat" onClick={handleSignOut}>Đăng xuất</MenuItem>]
-      : [<MenuItem onClick={() => { window.location.href = "/signin" }}>Đăng nhập</MenuItem>,
-      <MenuItem onClick={() => { window.location.href = "/signup" }}>Tạo tài khoản</MenuItem>
+      ? [<MenuItem key="thongtintaikhoan" onClick={() => { window.location.href = "/profile" }}>{t('profile')}</MenuItem>,
+      <MenuItem key="dangxuat" onClick={handleSignOut}>{t('logout')}</MenuItem>]
+      : [<MenuItem onClick={() => { window.location.href = "/signin" }}>{t('login')}</MenuItem>,
+      <MenuItem onClick={() => { window.location.href = "/signup" }}>{t('signup')}</MenuItem>
       ]}
     </Menu>
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      {profile.email}
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+  // const renderMobileMenu = (
+  //   <Menu
+  //     anchorEl={mobileMoreAnchorEl}
+  //     anchorOrigin={{
+  //       vertical: 'top',
+  //       horizontal: 'right',
+  //     }}
+  //     id={mobileMenuId}
+  //     keepMounted
+  //     transformOrigin={{
+  //       vertical: 'top',
+  //       horizontal: 'right',
+  //     }}
+  //     open={isMobileMenuOpen}
+  //     onClose={handleMobileMenuClose}
+  //   >
+  //     <MenuItem>
+  //       <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+  //         <Badge badgeContent={4} color="error">
+  //           <MailIcon />
+  //         </Badge>
+  //       </IconButton>
+  //       <p>Messages</p>
+  //     </MenuItem>
+  //     <MenuItem>
+  //       <IconButton
+  //         size="large"
+  //         aria-label="show 17 new notifications"
+  //         color="inherit"
+  //       >
+  //         <Badge badgeContent={17} color="error">
+  //           <NotificationsIcon />
+  //         </Badge>
+  //       </IconButton>
+  //       <p>Notifications</p>
+  //     </MenuItem>
+  //     {profile.email}
+  //     <MenuItem onClick={handleProfileMenuOpen}>
+  //       <IconButton
+  //         size="large"
+  //         aria-label="account of current user"
+  //         aria-controls="primary-search-account-menu"
+  //         aria-haspopup="true"
+  //         color="inherit"
+  //       >
+  //         <AccountCircle />
+  //       </IconButton>
+  //       <p>Profile</p>
+  //     </MenuItem>
+  //   </Menu>
+  // );
 
   return (
     <Box sx={{ flexGrow: 1, mb: 2 }}>
@@ -220,7 +223,7 @@ const handleSearch = (e) => {
                     }}
                     noWrap
                   >
-                    Sản phẩm
+                    {t('products')}
                   </Button>
                   <HoverMenu {...bindMenu(popupState)}>
                     {category.map((item, index) => (
@@ -247,7 +250,7 @@ const handleSearch = (e) => {
               href="/about"
               sx={{ m: 2, display: 'block' }}
             >
-              Về chúng tôi
+              {t('about')}
             </Button>
           </Box>
 
@@ -302,7 +305,7 @@ const handleSearch = (e) => {
           </Box>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
+      {/* {renderMobileMenu} */}
       {renderMenu}
     </Box>
   );
