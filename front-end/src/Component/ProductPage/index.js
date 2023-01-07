@@ -138,7 +138,7 @@ function ProductPage() {
                     <FormControlLabel control={<Checkbox />} label="Đang giảm giá" checked={(filter==2)} onChange={handleChange} value={2} />
                 </Grid>
             </Grid>
-            <Grid container spacing={2} sx={{ mt: 4 }}>
+            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
 
                 {product.map((item, index) => (
                     <Grid item xs={3}>

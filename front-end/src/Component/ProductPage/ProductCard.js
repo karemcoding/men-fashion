@@ -7,8 +7,6 @@ import { Badge, CardActionArea, Rating } from '@mui/material';
 import axios from 'axios';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 
-
-
 export default function ProductCard(props) {
   return (
     <Badge badgeContent={'Nổi bật'} color="error" invisible={(props.hot != 10)}>
@@ -21,7 +19,7 @@ export default function ProductCard(props) {
           <CardMedia
             onClick={() => { window.location.href = '/product/' + props.id }}
             component="img"
-            height="300"
+            height="200"
             image={`${axios.defaults.baseURL}/${props.image}`}
             alt="green iguana"
 

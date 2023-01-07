@@ -11,16 +11,17 @@ export default function Banner(props) {
     return (
 
         <Carousel
-            height={500}
             animation="slide"
+            sx={{heigh: '100%'}}
         >
             {items.map((item) =>
                 <Box
                     component="img"
                     src={item}
                     sx={{
-                        width: '100%',
-                    }}>
+                        width: '100%'
+                    }}
+                    >
                 </Box>)}
         </Carousel>
     )

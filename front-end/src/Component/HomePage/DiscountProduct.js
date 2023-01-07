@@ -36,10 +36,10 @@ export default function DiscountProduct() {
             <Grid item  xs></Grid>
             <Link href="product?fil=2"><h3>{t('more')}</h3></Link>
             </Grid>
-                <Grid container spacing={2}>
+            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
 
                     {productList.map((item, index) => (
-                        <Grid item xs={3}>
+                        <Grid item xs={2} sm={4} md={4}>
                             <ProductCard key={index} name={item.name} price={item.price} description={item.description} image={parseImagePath(item.thumbnail)} id={item.id} score={item.score} hot={item.hot} discount={item.productDiscounts}></ProductCard>
                         </Grid>
                     ))}

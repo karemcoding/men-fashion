@@ -2,12 +2,20 @@ import * as React from 'react';
 import axios from 'axios';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';import Select from '@mui/material/Select';
+import Box from '@mui/material/Box'; import Select from '@mui/material/Select';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/Menu';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import Drawer from '@mui/material/Drawer';
 import FormControl from '@mui/material/FormControl';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
@@ -65,6 +73,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header(props) {
+  const [state, setState] = React.useState(false);
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+
+    setState(open);
+  };
+
   const changeLanguage = (event) => {
     i18n.changeLanguage(event.target.value);
   }
@@ -96,7 +114,6 @@ export default function Header(props) {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -151,69 +168,72 @@ export default function Header(props) {
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  // const renderMobileMenu = (
-  //   <Menu
-  //     anchorEl={mobileMoreAnchorEl}
-  //     anchorOrigin={{
-  //       vertical: 'top',
-  //       horizontal: 'right',
-  //     }}
-  //     id={mobileMenuId}
-  //     keepMounted
-  //     transformOrigin={{
-  //       vertical: 'top',
-  //       horizontal: 'right',
-  //     }}
-  //     open={isMobileMenuOpen}
-  //     onClose={handleMobileMenuClose}
-  //   >
-  //     <MenuItem>
-  //       <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-  //         <Badge badgeContent={4} color="error">
-  //           <MailIcon />
-  //         </Badge>
-  //       </IconButton>
-  //       <p>Messages</p>
-  //     </MenuItem>
-  //     <MenuItem>
-  //       <IconButton
-  //         size="large"
-  //         aria-label="show 17 new notifications"
-  //         color="inherit"
-  //       >
-  //         <Badge badgeContent={17} color="error">
-  //           <NotificationsIcon />
-  //         </Badge>
-  //       </IconButton>
-  //       <p>Notifications</p>
-  //     </MenuItem>
-  //     {profile.email}
-  //     <MenuItem onClick={handleProfileMenuOpen}>
-  //       <IconButton
-  //         size="large"
-  //         aria-label="account of current user"
-  //         aria-controls="primary-search-account-menu"
-  //         aria-haspopup="true"
-  //         color="inherit"
-  //       >
-  //         <AccountCircle />
-  //       </IconButton>
-  //       <p>Profile</p>
-  //     </MenuItem>
-  //   </Menu>
-  // );
+  const list = (
+    <Box
+      sx={{ width: 250 }}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
 
+      <List>
+        <ListItem>
+          <Typography >{(profile.name) ? profile.name : profile.email}</Typography>
+        </ListItem>
+        <ListItem disablePadding>
+
+          <ListItemButton
+            href="/#"
+            variant="h6"
+            noWrap
+            sx={{ display: 'block' }}
+          >
+            MEN-FASHION
+          </ListItemButton>
+        </ListItem>
+          <ListItemButton
+            href="/product"
+            noWrap
+          >
+            {t('products')}
+          </ListItemButton>
+          <ListItemButton
+              variant="h6"
+              noWrap
+              href="/about"
+            >
+              {t('about')}
+            </ListItemButton>
+      </List>
+    </Box>
+  );
   return (
     <Box sx={{ flexGrow: 1, mb: 2 }}>
       <AppBar position="static" color='inherit'>
         <Toolbar color="gray">
-
+          <div>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+              onClick={toggleDrawer(true)}
+              edge="start"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Drawer
+              anchor={'left'}
+              open={state}
+              onClose={toggleDrawer(false)}
+            >
+              {list}
+            </Drawer>
+          </div>
           <Button
             href="/#"
             variant="h6"
             noWrap
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            sx={{ display: 'block' }}
           >
             MEN-FASHION</Button>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -268,7 +288,7 @@ export default function Header(props) {
           <Box sx={{ flexGrow: 1 }} />
 
 
-          
+
 
 
 
@@ -284,7 +304,7 @@ export default function Header(props) {
               />
             </Search>
           </Box>
-          <Box sx={{ display: { xs: 'none', md: 'flex', justifyContent: "center", alignItems: "center" } }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: "center", alignItems: "center" }}>
 
 
             <Typography >{(profile.name) ? profile.name : profile.email}</Typography>
@@ -302,20 +322,7 @@ export default function Header(props) {
             </IconButton>
             <Cart total={props.total} />
           </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-            
-          </Box>
-          <FormControl variant="standard" sx={{width:120  , ml:4}}>
+          <FormControl variant="standard" sx={{ width: 120, ml: 4 }}>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -326,11 +333,11 @@ export default function Header(props) {
               <MenuItem value={'en'}>English</MenuItem>
               <MenuItem value={'jp'}>日本</MenuItem>
             </Select>
-            </FormControl>
+          </FormControl>
         </Toolbar>
       </AppBar>
-      {/* {renderMobileMenu} */}
       {renderMenu}
+
     </Box>
   );
 }
