@@ -2,11 +2,13 @@ import * as React from 'react';
 import axios from 'axios';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
+import Box from '@mui/material/Box';import Select from '@mui/material/Select';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
+
+import FormControl from '@mui/material/FormControl';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -63,6 +65,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header(props) {
+  const changeLanguage = (event) => {
+    i18n.changeLanguage(event.target.value);
+  }
+
   const { t, i18n } = useTranslation();
   const [category, setCategory] = React.useState(['1']);
   const [profile, setProfile] = React.useState(['']);
@@ -110,11 +116,11 @@ export default function Header(props) {
     window.location.href = "/"
   };
 
-const handleSearch = (e) => {
-  e.preventDefault();
-  const data = new FormData(e.currentTarget)
-   window.location.href=`/product?search=${data.get('search')}`
-}
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget)
+    window.location.href = `/product?search=${data.get('search')}`
+  }
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -259,18 +265,24 @@ const handleSearch = (e) => {
 
 
 
-          <Box sx={{ flexGrow: 1 }}/>
+          <Box sx={{ flexGrow: 1 }} />
+
+
+          
+
+
+
           <Box component="form" onSubmit={handleSearch}>
-          <Search >
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              name="search"
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
+            <Search >
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                name="search"
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </Search>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex', justifyContent: "center", alignItems: "center" } }}>
 
@@ -288,7 +300,7 @@ const handleSearch = (e) => {
 
               <AccountCircle />
             </IconButton>
-            <Cart total={props.total}/>
+            <Cart total={props.total} />
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -301,8 +313,20 @@ const handleSearch = (e) => {
             >
               <MoreIcon />
             </IconButton>
-
+            
           </Box>
+          <FormControl variant="standard" sx={{width:120  , ml:4}}>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              onChange={changeLanguage}
+              value={i18n.language}
+            >
+              <MenuItem value={'vi'}>Tiếng Việt</MenuItem>
+              <MenuItem value={'en'}>English</MenuItem>
+              <MenuItem value={'jp'}>日本</MenuItem>
+            </Select>
+            </FormControl>
         </Toolbar>
       </AppBar>
       {/* {renderMobileMenu} */}

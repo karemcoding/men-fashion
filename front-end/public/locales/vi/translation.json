@@ -1,7 +1,11 @@
 {
-  "title": "Welcome to react using react-i18next",
-  "description": {
-    "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
-    "part2": "Switch language between english and german using buttons above."
-  }
+  "featured": "Sản phẩm nổi bật",
+  "sales":"Đang giảm giá",
+  "more":"Xem thêm",
+  "profile": "Thông tin cá nhân",
+  "login": "Đăng nhập",
+  "logout": "Đăng xuất",
+  "signup": "Đăng ký",
+  "products": "Sản phẩm",
+  "about": "Về chúng tôi"
 }
